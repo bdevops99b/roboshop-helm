@@ -12,11 +12,11 @@ pipeline {
     stage('Clone App Repo') {
       steps {
         dir('APP') {
-          git branch: 'main', url: 'https://github.com/bdevops99b/${component}'
+          git branch: 'main', url: 'https://github.com/raghudevopsb72/${component}'
         }
-//        dir('HELM') {
- //         git branch: 'main', url: 'https://github.com/bdevops99b/roboshop-helm'
- //       }
+        dir('HELM') {
+          git branch: 'main', url: 'https://github.com/raghudevopsb72/roboshop-helm'
+        }
       }
 
     }
@@ -24,9 +24,8 @@ pipeline {
     stage('Helm Deploy') {
       steps {
         dir('HELM') {
-  /*       sh 'aws eks update-kubeconfig --name prod-eks-cluster' */
- /*         sh 'helm upgrade -i ${component} . -f ../APP/values.yaml --set app_version=${app_version}' */
-          sh 'helm upgrade -i ${component} . -f ../APP/values.yaml'
+          sh 'aws eks update-kubeconfig --name prod-eks-cluster'
+          sh 'helm upgrade -i ${component} . -f ../APP/values.yaml --set app_version=${app_version}'
         }
 
       }
