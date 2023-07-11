@@ -19,9 +19,10 @@ serviceAccount:
   create: true
   # Annotations to add to the service account
   annotations:
-    eks.amazon.aws/role-arn: arn:aws:iam::193400300103:role/eks-ssm-ps-prod-role
-  # The name of the service account to use.
+    eks.amazonaws.com/role-arn: arn:aws:iam::193400300103:role/eks-ssm-ps-prod-role
+  # The name of the service account to use.193400300103.dkr.ecr.us-east-1.amazonaws.com/aws-parameter-store
   # If not set and create is true, a name is generated using the fullname template
+  # 193400300103.dkr.ecr.us-east-1.amazonaws.com/aws-parameter-store
   name: ""
 
 podAnnotations: {}
