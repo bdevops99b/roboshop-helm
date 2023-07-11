@@ -33,7 +33,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: aws-ssm-pm
-          image: 633788536644.dkr.ecr.us-east-1.amazonaws.com/aws-parameter-store:latest
+          image: 193400300103.dkr.ecr.us-east-1.amazonaws.com/aws-parameter-store
           imagePullPolicy: Always
           env:
             - name: PARAMS
