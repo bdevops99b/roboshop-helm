@@ -38,9 +38,9 @@ spec:
           env:
             - name: PARAMS
               value: { { .Values.params } }
-          volumeMounts:
-            - mountPath: /params
-              name: params-volume
+            volumeMounts:
+              - mountPath: /params
+                name: params-volume
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
