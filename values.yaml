@@ -82,3 +82,6 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+schema:
+  enabled: false
