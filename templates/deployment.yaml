@@ -33,7 +33,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: aws-ssm-pm
-          image: 193400300103.dkr.ecr.us-east-1.amazonaws.com/aws-parameter-store
+          image: 193400300103.dkr.ecr.us-east-1.amazonaws.com/aws-parameter-store:latest
           imagePullPolicy: Always
           env:
             - name: PARAMS
@@ -42,7 +42,7 @@ spec:
             - mountPath: /params
               name: params-volume
       containers:
-        - name: {{ .Chart.Name }}
+        - name: {{ .Values.appName }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: 193400300103.dkr.ecr.us-east-1.amazonaws.com/{{ .Values.appName }}:{{ .Values.app_version }}
@@ -52,16 +52,16 @@ spec:
               name: params-volume
           ports:
             - name: http
-              containerPort: 80
+              containerPort: {{ .Values.appPort }}
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /health
+              port: {{ .Values.appPort }}
           readinessProbe:
             httpGet:
-              path: /
-              port: http
+              path: /health
+              port: {{ .Values.appPort }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
